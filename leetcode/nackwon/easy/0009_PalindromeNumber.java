@@ -1,3 +1,7 @@
+/*
+* Runtime : 14.35%
+* Memory  : 27.09%
+*/
 class Solution {
     public boolean isPalindrome(int x) {
 
