@@ -5,4 +5,3 @@ class Solution:
             for k, t in enumerate(nums):
                 if nums[i] + nums[k] == target and i != k:
                     return [i, k]
-                
