@@ -1,8 +1,41 @@
-## Every Week Algorithm - [LeetCode](https://leetcode.com/)
+## Every Week Algorithm
 
 <br/>
 
-### `진행방식`
+##### `해외 사이트`
+
+[LeetCode - https://leetcode.com/](https://leetcode.com/)
+
+[HackerRank - https://www.hackerrank.com//](https://www.hackerrank.com/)
+
+[CodeSignal - https://codesignal.com/](https://codesignal.com/)
+
+[Codility - https://www.codility.com/](https://www.codility.com/)
+
+[CodeWars - https://www.codewars.com/](https://www.codewars.com/)
+
+[Project Euler - https://projecteuler.net/](https://projecteuler.net/)
+
+[GeeksForGeeks - https://www.geeksforgeeks.org/must-coding-questions-company-wise/](https://www.geeksforgeeks.org/must-coding-questions-company-wise/)
+
+
+
+
+<br/>
+
+##### `국내 사이트`
+
+[코드그라운드 - https://www.codeground.org/main.do](https://www.codeground.org/main.do)
+
+[백준 알고리즘 - https://www.acmicpc.net/](https://www.acmicpc.net/)
+
+[프로그래머스 - https://programmers.co.kr/](https://programmers.co.kr/)
+
+
+<br/>
+<br/>
+
+### `스터디 진행방식`
 
 ##### `step1.` 일주일에 2 or 3 문제를 각자 푼다.
 
@@ -20,3 +53,9 @@ ex) 2중 for문을 이용하여 풀었는데 시간복잡도에서 fail이 뜨�
 ```
 
  
+<br/>
+<br/>
+
+### `코딩 테스트 TIP`
+
+- 문제 의도 파악하기
