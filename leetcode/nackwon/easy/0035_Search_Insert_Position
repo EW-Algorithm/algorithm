@@ -1,0 +1,29 @@
+/**
+ * Runtime : 100%
+ * Memory  : 22.8%
+**/
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int intResult = 0;
+		
+		int intSize = nums.length;
+		
+		for(int i=0; i<intSize; ++i) {
+			
+			int intTmp = nums[i];
+			
+			if(intTmp >= target) {
+				intResult = i;
+				break;
+			} else {
+                intResult = intSize;
+            }
+		}
+		
+		return intResult;
+    }
+}
+
+// 비교적 간단한 문제로 배열에서 Target Number를 순서에 맞게 넣어주면 된다.
+
+// 기본 조건이 이미 Sorting된 배열이기 때문에 비교 후 위치만 찾아주면 된다.
