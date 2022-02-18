@@ -1,0 +1,6 @@
+SELECT name, population, area
+FROM world w
+WHERE population >= 25000000 OR area >= 3000000
+
+// 해당 크기보다 큰 것 구하면됨
+// OR / AND -> 구문만 기억하면됨
