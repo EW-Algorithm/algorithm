@@ -1,0 +1,16 @@
+SELECT Email
+FROM Person
+GROUP BY Email
+HAVING COUNT(Email) > 1
+
+// Test Case Basic Info
+// Create table If Not Exists Person (id int, email varchar(255))
+// Truncate table Person
+// insert into Person (id, email) values ('1', 'a@b.com')
+// insert into Person (id, email) values ('2', 'c@d.com')
+// insert into Person (id, email) values ('3', 'a@b.com')
+// -> 중복된 Email 을 찾아라!
+
+// GROUP BY Email -> Email을 기준으로 묶는 것
+// HAVING COUNT(Email) > 1 -> WHERE 조건문과 비슷 
+// -> Email Group으로 묶은 데이터 중 갯수가 1개 이상인 것을 찾는 
