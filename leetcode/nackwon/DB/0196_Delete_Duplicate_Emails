@@ -1,0 +1,24 @@
+DELETE p1
+FROM Person p1
+INNER JOIN  Person p2
+WHERE p1.id > p2.id AND p1.Email = p2.Email
+
+// Inner Join을 이용해서 해결
+
+
+DELETE 
+FROM Person
+WHERE id NOT IN 
+  (SELECT id 
+  FROM (SELECT MIN(id) id
+        FROM Person
+        GROUP BY email
+        ) AS tmp
+  );
+
+// insert into Person (id, email) values ('1', 'john@example.com')
+// insert into Person (id, email) values ('2', 'bob@example.com')
+// insert into Person (id, email) values ('3', 'john@example.com')
+
+// 이메일로 그룹으로 묶고 id 값이 제일 작은 것 추출 -> 만약 MIN 하지 않으면 2,3 이 추출되고 MIN 하면 1,2 이 추출된다. (id값)
+// id 값 3 이 현재 포함되어 있지 않기 때문에 3을 삭제
