@@ -1,0 +1,8 @@
+SELECT P.firstName,P.lastName,A.state,A.city
+FROM Person AS P
+LEFT JOIN Address AS A
+ON P.personId=A.personId
+
+// AS -> 별칭 지정
+// LEFT JOIN -> LEFT Table을 포함해서 조인을 진행
+// 그래서 Table에 값이 없을 경우 Null이 표시된다.
