@@ -7,7 +7,7 @@
     // #1. Broute Force
     
 
-    // #2. 
+    //#2. 
     let curSum = nums[0];
     let maxSum = nums[0];
 
