@@ -1,0 +1,26 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        
+        long aInt = Long.parseLong(a, 2);
+        long bInt = Long.parseLong(b, 2);
+
+        long sum = aInt + bInt;
+        
+        return Long.toBinaryString(sum);
+    }
+}
+// 해당 방법은 Error
+// Integer.parseInt(a, 2) 이렇게 할 경우 2진수를 10진수로 변경한다.
+// 하지만 Integer , Long 도 범위가 존재하기 때문에 엄청 긴 2진수는 범위 초과로 해결이 안됨
+
+// BigInteger를 사용하면 문제없이 돌아가는데
+// Leetcode 에서 하면 안됨.
+// BigInteger 사용이 제한되는 것 같음.
+
+String a = "10100000100100110110010000010101111011011001101110111111111101000000101111001110001111100001101";
+String b = "110101001011101110001111100110001010100001101011101010000011011011001011101111001100000011011110011";
+
+BigInteger aInt = new BigInteger(a, 2);
+BigInteger bInt = new BigInteger(b, 2);
+
+System.out.println(aInt.add(bInt).toString(2));
