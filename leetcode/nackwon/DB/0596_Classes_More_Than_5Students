@@ -1,0 +1,22 @@
+SELECT MAX(class) as class
+FROM  (SELECT *, count(class) count1
+FROM courses 
+GROUP BY class
+HAVING COUNT(class)
+) c
+
+// 중복되는 class 중에 5명 이상인 class를 구하는 문제 
+
+// every derived table must have its own alias 오류가 발생했었음.
+// 해당 오류는 서브쿼리에 이름을 설정안해줘서 발생한 오류
+// c 이름을 설정해주고 해결됨.
+// 위에 SQL 로 해결은 됨 하지만 NULL 처리가 안됨
+// 문제를 잘못 읽었었음
+
+SELECT class
+FROM courses 
+GROUP BY class
+HAVING COUNT(class)>=5
+
+// 간단한 문제였음.
+// GROUP BY 와 HAVING절을 잘 이용하면됨
