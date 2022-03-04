@@ -1,0 +1,10 @@
+SELECT name As Employee
+FROM employee e
+WHERE managerId IS NOT NULL
+AND salary > (
+	SELECT salary
+    FROM employee
+    WHERE id = e.managerId
+)
+// 관리자 보다 수입이 큰 사람 구하는 SQL
+// SUB Query로 위와 같이 비교
