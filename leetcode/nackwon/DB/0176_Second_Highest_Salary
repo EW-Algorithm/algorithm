@@ -1,0 +1,24 @@
+
+
+SELECT id, salary ,rank() over (order by salary desc) AS ranking 
+FROM Employee
+
+// Ranking 구하는 함수
+// 1. rank() over (order by '' desc) AS ranking
+// 2. dence_rank() over (order by '' desc) AS ranking 
+// -> 두개의 차이는 같은 값이 나왔을 때에 차이가 있음
+// 1 과 2는 같은 순위가 나올 경우 같은 번호로 매겨지는데 다음 숫자가 1의 경우에는 같은 순위만큼 건너뛰어서 랭킹이 매겨지고 
+// 2는 그 다음 숫자에 바로 랭킹이 매겨진다
+// ex) id | level | 1번 (rank) | 2번 (dence_rank()
+//     4  |   44  |     1      |         1
+//     2  |   22  |     2      |         2
+//     3  |   10  |     3      |         3
+//     1  |   10  |     3      |         3
+//     5  |    4  |     5      |         4       <- 이렇게 진행이 된다.
+
+// select IFNULL( (select max(salary) as salary
+//                from Employee 
+//                where salary <> (select max(salary) from Employee)), null) as SecondHighestSalary;
+// 2번째로 큰 것을 구하는 것이라 이렇게 구해도 된다. 
+// <> 연산자는 != 와 같다.
+// IFNULL (a, b) -> a 에서 Null 이 나올 경우 b로 변경
