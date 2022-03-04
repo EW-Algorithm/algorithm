@@ -1,0 +1,9 @@
+SELECT W1.id
+FROM weather W1, weather W2
+WHERE W1.temperature > W2.temperature
+AND DATEDIFF(W1.recordDate, W2.recordDate)=1
+
+// 전 날 보다 온도가 높은 것 구하는 SQL
+
+// 한 Table을 저렇게 2개로 사용해도 노상관 -> 대신 이름을 지정해줘야함.
+// DATEDIFF ( A, B) A B 날짜 차이를 구하는 것
