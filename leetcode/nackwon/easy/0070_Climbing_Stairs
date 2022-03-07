@@ -1,0 +1,24 @@
+class Solution {
+    public int climbStairs(int n) {
+        if( n < 2) {
+            return n;
+        }
+        int intStairs[] = new int[n];
+
+        intStairs[0] = 1;
+        intStairs[1] = 2;
+
+        for (int i=2;i<n; ++i) {
+            intStairs[i] = intStairs[i-2] + intStairs[i-1];
+        }
+
+        return intStairs[n-1];
+    }
+}
+
+// 피보나치 수열로 문제 해결
+// 1칸일 경우 1가지
+// 2칸일 경우 2가지
+// 3칸일 경우 3가지 ( 1칸일경우 + 2칸일 경우)
+// 4칸일 경우 5가지 (2칸일 경우 + 3칸일 경우)
+// --> 이렇게 구해지므로 피보나치 수열로 문제를 해결하면된다.
