@@ -1,0 +1,132 @@
+// javascript 도 Class 를 지정할 수 있다.
+// ES6 부터 지원하기 시작함. explorer 는 사용을 못함.
+
+// 기본적인 가벼운 것은 Function 을 사용하면 되지만 복잡해지는 경우에는 Class 를 사용하는 것이 좋다.
+// 자바에서 setter 를 만드는 것 처럼 만들면 됨.
+/*class TreeNode {
+    // class 를 생성하면 제일 먼저 실행되고 초기값을 설정할 수 있다.
+    constructor (val) {
+        this.val = val;
+        this.leftNode = null;
+        this.rightNode = null;
+    }
+}*/
+
+function TreeNode(val, left, right) {
+    this.val = (val===undefined ? 0 : val)
+    this.left = (left===undefined ? null : left)
+    this.right = (right===undefined ? null : right)
+}
+
+let root;
+let number = [];
+
+function MainFunc() {
+    /*
+    Class 로 정의한경우
+    root = new TreeNode(1);
+    root.leftNode = new TreeNode(2);
+    root.rightNode = new TreeNode(3);
+    root.leftNode.leftNode = new TreeNode(4);
+    root.leftNode.rightNode = new TreeNode(5);
+    root.rightNode.leftNode = new TreeNode(6);*/
+
+    const node6 = new TreeNode(3, null, null);
+    const node5 = new TreeNode(4, null, null);
+    const node4 = new TreeNode(4, null, null);
+    const node3 = new TreeNode(3,  null, null);
+    const node2 = new TreeNode(2, node5, node6);
+    const node1 = new TreeNode(2, node3, node4);
+    root = new TreeNode(1, node1, node2);
+
+    //console.log(preOrderTraversal(root));
+    //console.log(inorderTraversal(root));
+    //console.log(postOrderTraversal(root));
+
+    console.log(stackTraversal(root, root));
+}
+
+
+/**
+ * 기존의 자바의 형식과 비슷함.
+ * 중위순회
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+const inorderTraversal = function(root) {
+
+    if(root == null) {
+        return number;
+    }
+
+    function inOrderFunc(node) {
+        if(node.left != null)
+            inOrderFunc(node.left);
+
+        number.push(node.val);
+
+        if(node.right != null)
+            inOrderFunc(node.right);
+    }
+    inOrderFunc(root);
+    return number;
+};
+
+/**
+ * 전위 순회
+ * @param root
+ * @returns {*[]}
+ */
+const preOrderTraversal = function (root) {
+    if(root == null) {
+        return number;
+    }
+
+    function preOrderFunc(node) {
+        number.push(node.val);
+
+        if(node.left != null)
+            preOrderFunc(node.left);
+        if(node.right != null)
+            preOrderFunc(node.right);
+    }
+    preOrderFunc(root);
+    return number;
+
+};
+
+/**
+ * 후위순회
+ * @param root
+ * @returns {*[]}
+ */
+const postOrderTraversal = function (root) {
+    if(root == null) {
+        return number;
+    }
+
+    function postOrderFunc(node) {
+        if(node.left != null)
+            postOrderFunc(node.left);
+        if(node.right != null)
+            postOrderFunc(node.right);
+        number.push(node.val);
+    }
+    postOrderFunc(root);
+    return number;
+
+};
+
+const stackTraversal = function (root1, root2) {
+
+    if(root1 == null || root2 == null)
+        return root1==root2;
+
+    if(root1.val != root2.val)
+        return false;
+
+    return stackTraversal(root1.right, root2.left) && stackTraversal(root1.left, root2.right);
+}
+
+MainFunc();
+
