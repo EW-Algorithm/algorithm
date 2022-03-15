@@ -1,0 +1,37 @@
+ public static void merge(int[] nums1, int m, int[] nums2, int n) {
+
+        List<Integer> arrList = new ArrayList<>();
+
+        if(m > 0) {
+
+        }
+        for (int i=0;i<m; ++i) {
+            arrList.add(nums1[i]);
+        }
+
+        for (int i=0;i<n;++i) {
+            arrList.add(nums2[i]);
+        }
+
+        Collections.sort(arrList);
+
+        for (int i=0;i<arrList.size();++i){
+            nums1[i] = arrList.get(i);
+        }
+
+    }
+    
+// 간단한 merge 후 sorting하는 문제.
+// 크게 문제되는 것 없이 해결
+
+-- javascript
+
+var merge = function(nums1, m, nums2, n) {
+    nums1 = nums1.slice(0, m);
+    nums2 = nums2.slice(0, n);
+    
+    nums1 = nums1.concat(nums2);
+    
+    return nums1.sort();
+    
+};
