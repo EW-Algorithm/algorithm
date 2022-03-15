@@ -1,0 +1,28 @@
+package TreeNode;
+
+public class TreeNode {
+
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+    public void setLeftNode(TreeNode node) {
+        this.left = node;
+    }
+    public void setRightNode(TreeNode node) {
+        this.right= node;
+    }
+
+    public TreeNode getLeftNode() {
+        return this.left;
+    }
+    public TreeNode getRightNode() {
+        return this.right;
+    }
+}
