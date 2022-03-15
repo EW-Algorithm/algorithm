@@ -1,0 +1,38 @@
+package TreeNode;
+
+public class Main {
+
+    public static void main(String[] args) {
+        //          1
+        //      5       25
+        //  1       20      30
+        mkrTreeNode mkrNode = new mkrTreeNode();
+
+        /*TreeNode node5 = mkrNode.makeTreeNode(1, null, null);
+        TreeNode node4 = mkrNode.makeTreeNode(5, node5, null);
+        TreeNode node3 = mkrNode.makeTreeNode(30, null, null);
+        TreeNode node2 = mkrNode.makeTreeNode(20, null, null);
+        TreeNode node1 = mkrNode.makeTreeNode(25, node2, node3);
+        TreeNode root = mkrNode.makeTreeNode(15, node4, node1);*/
+
+        /*System.out.println(mkrNode.preOrder(root));  // 전위순회
+        System.out.println(mkrNode.inOrder(root));   // 중위순회
+        System.out.println(mkrNode.postOrder(root)); // 후외순회
+        System.out.println(mkrNode.stackMethod(root)); // 후외순회
+        System.out.println(mkrNode.queueMethod(root)); // 레벨 순회*/
+
+        /////////////////////////////////////////////////////
+        // [1,2,2,2,null,2]
+
+        TreeNode rightNode3 = mkrNode.makeTreeNode(2, null, null);
+        TreeNode rightNode2 = mkrNode.makeTreeNode(2, null, null);
+        TreeNode leftNode1 = mkrNode.makeTreeNode(2, null, rightNode2);
+        TreeNode rightNode1 = mkrNode.makeTreeNode(2, null, rightNode3);
+        TreeNode root = mkrNode.makeTreeNode(1, leftNode1, rightNode1);
+
+        boolean isCheck = mkrNode.isCheckMirrorTree(root, root);
+
+        System.out.println(isCheck);
+    }
+
+}
