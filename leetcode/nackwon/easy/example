@@ -1,0 +1,66 @@
+1. Java
+
+1-1) 실패
+public static List<Integer> inOrder(TreeNode node) {
+		List<Integer> list = new ArrayList<>();
+		
+        if(node == null) {
+            list.add(0);
+        }
+		if(node != null) {
+			
+			if (node.left != null) {
+				list.addAll(inOrder(node.left));
+			}
+			list.add(node.val);
+			if (node.right != null) {
+				list.addAll(inOrder(node.right));
+			}
+		} 
+		return list;
+		
+	}
+	
+	public static List<Integer>  postOrder(TreeNode node) {
+		List<Integer> list = new ArrayList<>();
+		
+        if(node == null) {
+            list.add(0);
+        }
+		if(node != null) {
+			
+            if (node.right != null) {
+				list.addAll(postOrder(node.right));
+			}
+			list.add(node.val);
+            if (node.left != null) {
+				list.addAll(postOrder(node.left));
+			}
+		} 
+		return list;
+	}
+// Left->Root->Right 순으로 중위순회 그리고 후위순회를 약간 변경해서 Right->Root->Left 로 변경해서 풀었음
+// 일부는 맞는 Test Case가 존재하지만 같은 숫자로 이루어졌을 경우 대칭에 모순이 일어남.
+
+-->
+public boolean isSymmetric(TreeNode root) {
+
+    // 초기 값이 Null 일 때 체크로 Time을 줄임.
+      return root == null || isCheckTree(root.right, root.left);
+  }
+
+  public static boolean isCheckTree(TreeNode node1, TreeNode node2) {
+
+      if (node1 == null || node2 == null) {
+          return node1 == node2;
+      } 
+
+      if(node1.val != node2.val) {
+          return false;
+      }
+
+      return isCheckTree(node1.right, node2.left) && isCheckTree(node1.left, node2.right);
+
+  }
+  
+// 따로 빼지말고 들어가서 최고 오른쪽과 최고 왼쪽을 비교하면서 오면 됨.
