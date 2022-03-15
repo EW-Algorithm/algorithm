@@ -1,0 +1,97 @@
+	1) Java
+  // 전위 순회 Root ->Left ->Right
+  public static List<Integer> preOrder(TreeNode node) {
+		List<Integer> list = new ArrayList<>();
+		
+		if(node != null) {
+			list.add(node.val);
+			if (node.left != null) {
+				list.addAll(preOrder(node.left));
+			}
+			
+			if (node.right != null) {
+				list.addAll(preOrder(node.right));
+			}
+		} else {
+			return list;
+		}
+		return list;
+	}
+	
+  // 중위 순회 Left -> Root -> Right
+	public static List<Integer> inRoder(TreeNode node) {
+		List<Integer> list = new ArrayList<>();
+		
+		if(node != null) {
+			
+			if (node.left != null) {
+				list.addAll(inRoder(node.left));
+			}
+			list.add(node.val);
+			if (node.right != null) {
+				list.addAll(inRoder(node.right));
+			}
+		} else {
+			return list;
+		}
+		return list;
+		
+	}
+	
+  // 후위 순회 Left -> Right ->Root
+	public static List<Integer>  postOrder(TreeNode node) {
+		List<Integer> list = new ArrayList<>();
+		
+		if(node != null) {
+			
+			if (node.left != null) {
+				list.addAll(postOrder(node.left));
+			}
+			
+			if (node.right != null) {
+				list.addAll(postOrder(node.right));
+			}
+			list.add(node.val);
+		} else {
+			return list;
+		}
+		return list;
+		
+	}
+
+2) JavaScript
+var inorderTraversal = function(root) {
+    
+    let number = [];
+    
+    if(root == undefined) {
+        return number;
+    }
+    
+    function inOrderFunc(node) {
+        
+        if(node.left != null) 
+            inOrderFunc(node.left);
+        
+        number.push(node.val);
+        
+        if(node.right != null) 
+            inOrderFunc(node.right);
+    }
+    inOrderFunc(root);
+    return number;
+    
+};
+
+
+-> Error 사항 정리
+// Assignment to constant variable. -> const로 지정한 변수를 아래에서 다르게 변경하려 해서 난 오류 (const는 고정된 값임)
+// 
+
+// 가장 쉽게 해결할 수 있는 방법이 재귀함수를 이용하는 방법
+// 재귀함수로 호출 시 어느 위치에 출력하는지에 따라 전위 중위 후위 순회로 나뉜다.
+// 자바나 자바스크립트나 비슷하게 해결이 가능하다.
+
+
+
+
