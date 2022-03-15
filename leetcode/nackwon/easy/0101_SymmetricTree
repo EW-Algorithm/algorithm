@@ -75,4 +75,17 @@ public boolean isSymmetric(TreeNode root) {
 
   }
   
+  
+ --> JavaScript 로 변경 
+ const stackTraversal = function (root1, root2) {
+
+    if(root1 == null || root2 == null)
+        return root1==root2;
+
+    if(root1.val != root2.val)
+        return false;
+
+    return stackTraversal(root1.right, root2.left) && stackTraversal(root1.left, root2.right);
+}
+  
 // 따로 빼지말고 들어가서 최고 오른쪽과 최고 왼쪽을 비교하면서 오면 됨.
