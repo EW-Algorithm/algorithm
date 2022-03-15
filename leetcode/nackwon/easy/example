@@ -42,7 +42,19 @@ public static List<Integer> inOrder(TreeNode node) {
 // Left->Root->Right 순으로 중위순회 그리고 후위순회를 약간 변경해서 Right->Root->Left 로 변경해서 풀었음
 // 일부는 맞는 Test Case가 존재하지만 같은 숫자로 이루어졌을 경우 대칭에 모순이 일어남.
 
--->
+--> 수정본 
+ /**
+    *       1       - lv1
+    *   2       2   - lv2
+    *     3       3 - lv3
+    *
+    * 재귀함수를 이용해서 풀었는데 
+    * root1 ---- root2 는 같기 때문에 서로 다른 방향으로 검색해서 비교
+    * 1) root1 의 right 와 root2의 left 는 각 2 2 이기 때문에 true 반환
+    * 2) 재귀로 다시 한번 들어가기 lv2 를 기준으로 각 left right 를 구함.
+    * 3) root1의 right는 3 이지만 root2 의 left는 null 이기 때문에 다름.
+    * 이렇게 진행이됨
+    **/
 public boolean isSymmetric(TreeNode root) {
 
     // 초기 값이 Null 일 때 체크로 Time을 줄임.
