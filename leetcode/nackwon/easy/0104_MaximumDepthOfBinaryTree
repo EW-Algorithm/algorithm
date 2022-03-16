@@ -1,0 +1,25 @@
+/**
+     * Leetcode 예제를 이용함.
+     * 1) 3에서 9로 탐색 (left)
+     * 2) 9 node 에서 left 탐색 -> null 이기 때문에 0 리턴 / right 탐색-> null 이기 떄문에 0 리턴
+     * 3) 비교 후 큰 값에 +1 리턴 (0 vs 0 이므로 1 리턴)
+     * -------------> 왼쪽 Node 의 깊이 탐색 완료
+     * 4) 3에서 20으로 탐색 (right)
+     * 5) 20 node 에서 left 탐색 -> 15 존재하기 때문에 다시 L -> R 로 탐색 15 에서 0 vs 0 으로 1리턴
+     * 6) 20 node 에서 right 탐색 -> 7 존재하기 때문에 다시 L -> R 로 탐색 7 에서 0 vs 0 으로 1리컴
+     * 7) 20 node 입장에서 봤을 때 L이 1이고 R이 1이기 때문에 비교 후 +1 한 후 2 리턴
+     * 8) 왼쪽 노드 리턴된 1 과 오른쪽 노드 리턴된 2 값 비교 후 +1 하면 3 리턴 
+     * @param node
+     * @return
+     */
+    public int maximumDepthOfBinaryTree(TreeNode node) {
+
+        if (node == null) {
+            return 0;
+        }
+
+        int intLeft  = maximumDepthOfBinaryTree(node.left);
+        int intRight = maximumDepthOfBinaryTree(node.right);
+
+        return Math.max(intLeft, intRight) + 1;
+    }
