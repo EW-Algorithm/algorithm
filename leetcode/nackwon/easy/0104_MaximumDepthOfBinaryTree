@@ -23,3 +23,23 @@
 
         return Math.max(intLeft, intRight) + 1;
     }
+
+
+--> Javascript
+// 자바에서 구성했던 것과 똑같은 구성
+
+const maximumDepthOfBinaryTree = function (root) {
+
+    function maximumFunc(root) {
+
+        if(root == null) {
+            return 0;
+        }
+
+        let intLeft = maximumFunc(root.left);
+        let intRight = maximumFunc(root.right);
+
+        return intLeft>intRight?intLeft+1:intRight+1;
+    }
+    return maximumFunc(root);
+}
