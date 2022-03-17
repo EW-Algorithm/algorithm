@@ -1,0 +1,41 @@
+public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> listResult = new ArrayList<List<Integer>>();
+        int[][] combinationMatrix = new int[numRows+1][numRows+1];
+
+        combinationMatrix[1][0] = 1;
+        combinationMatrix[1][1] = 1;
+
+        if(numRows <= 2) {
+            if(numRows == 1) {
+                listResult.add(new ArrayList<>(Arrays.asList(1)));
+            }
+
+            if(numRows == 2) {
+                listResult.add(new ArrayList<>(Arrays.asList(1)));
+                listResult.add(new ArrayList<>(Arrays.asList(combinationMatrix[1][0], combinationMatrix[1][1])));
+            }
+            return listResult;
+        }
+
+        listResult.add(new ArrayList<>(Arrays.asList(1)));
+        listResult.add(new ArrayList<>(Arrays.asList(combinationMatrix[1][0], combinationMatrix[1][1])));
+        List<Integer> innerList = null;
+        for(int i=2; i<=numRows; ++i) {
+            innerList = new ArrayList<>();
+            
+            combinationMatrix[i][0] = 1;
+            combinationMatrix[i][i] = 1;
+
+            innerList.add(combinationMatrix[i][0]);
+            for (int j=1; j<=i; ++j) {
+                combinationMatrix[i][j] = combinationMatrix[i-1][j-1] + combinationMatrix[i-1][j];
+                innerList.add(combinationMatrix[i][j]);
+            }
+            listResult.add(innerList);
+        }
+        listResult = listResult.subList(0,numRows);
+        return listResult;
+    }
+    
+  -- javascript
+  
