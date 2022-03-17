@@ -1,0 +1,94 @@
+package Solution;
+
+/**
+ * 그리디 알고리즘 (탐욕 알고리즘)
+ * - 선택의 순간마다 당장 눈앞에 보이는 최적의 상황만 쫓아 최종 해답을 찾는 알고리즘.
+ * - 두가지 조건을 성립
+ *      -> 탐욕스런 선택 조건과 최적 부분 구조 조건이라는 두 조건이 만족해야 한다.
+ *          -> 탐욕스런 선택 조건은 앞의 선택이 이후의 선택에 영향을 주지 않는다는 것
+ *          -> 최적 부분 구조 조건은 문제에 대한 최적해가 부분문제에 대해서도 역시 최적해라는 것
+ *
+ * 문제 해결방법
+ * 1) 선택 절차 : 현재 상태에서 최적의 해답을 선택
+ * 2) 적절성 검사 : 선택된 해가 문제의 조건을 만족하는지 검사
+ * 3) 해답 검사 : 원래의 문제가 핵뎔되었는지 검사 후, 미 해결 시 선택 절차로 돌아가 과정 반봅
+ *
+ *
+ * ex) 4,040 원의 물건을 5,000원 지폐로 구매할 경우 거스름 돈 동전의 갯수를 최소한으로 받을 경우
+ *
+ *
+ */
+public class SellStock {
+
+    public static void main(String[] args) {
+
+        int[] prices1 = {7,6,4,3,1};
+        int[] prices2 = {7,1,5,3,6,4};
+
+        System.out.println(maxProfit1(prices2));
+    }
+
+
+    /**
+     * 이중 for 문을 이용해 문제를 해결
+     *
+     * 이 문제는 DP 로 문게 해결이 가능하다.
+     * @param prices
+     * @return
+     */
+    public static int maxProfit(int[] prices) {
+
+        int intResult = 0;
+
+        int intSize = prices.length;
+        int intMaxProfit = 0;
+        for (int i=0;i<intSize; ++i) {
+            int buyPrice = prices[i];
+
+            for (int j=i+1;j<intSize;++j) {
+                int sellPrice = prices[j];
+                int intTmpPrice = sellPrice - buyPrice;
+
+                if(intTmpPrice > 0) {
+                    if(intMaxProfit == 0) {
+                        intMaxProfit = intTmpPrice;
+                    } else {
+                        if(intMaxProfit < intTmpPrice) {
+                            intMaxProfit = intTmpPrice;
+                        }
+                    }
+                }
+            }
+        }
+        intResult = intMaxProfit;
+        return intResult;
+    }
+
+    /**
+     * 이렇게 해결 가능
+     *
+     * ex) price{7,1,5,3,6,4};
+     *
+     * 1) 7 과 1 비교 후 작은 것 선택 (1 선택) --> min = 1
+     * 2) Result 값과 1-7 값 비교 후 큰 수 선택 후 Result 에 삽입 (Result 값(0))
+     * 3) min = 1 | price[2] = 5 비교 -> min 값은 1
+     * 4) Result 값과 5-1 값 비교 후 큰수 선택 후 result 에 삽입 result = 4
+     * 5) min = 1 | price[3] = 3 비교 -> min 값은 1
+     * 6) Result 값과 3-1 값 비교 후 큰 수 선택 후 result 에 삽입 result = 4
+     * 7) min = 1 | price[4] = 6 -> result = 5
+     * 8) Result = 4 | 6-1 값 비교 -> result = 5
+     *
+     * -> min 으로 제일 작은 price 를 검색 해 찾고 가격 차를 구해 최대 값을 구함.
+     * @param prices
+     * @return
+     */
+    public static int maxProfit1(int[] prices) {
+        int intResult = 0;
+        int min = prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            min = Math.min(prices[i], min);
+            intResult = Math.max(intResult, prices[i] - min);
+        }
+        return intResult;
+    }
+}
