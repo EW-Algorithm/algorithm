@@ -1,0 +1,93 @@
+package JavaSolution;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * 파스칼 삼각형
+ *
+ * 파스칼 삼각형은 수학에서 이항계수를 삼각형 모양의 기하학적 형태로 표현한 것.
+ *
+ *
+ *
+ *
+ * *)이항계수
+ *  - 서로 다른 몇 개의 물건 중 순서 상관없이 물건을 선택할 수 있는 경우의 수를 구하는 것
+ *  - 바구니 속 공 5개 중 3개를 꺼낼 때 나올수 있는 경우의 수 (수항에서 5C3 으로 표현함)
+ *  - 5C3은 5P3/3! 로 계산이 가능하다. 5P3 -> 5*4*3 | 3! -> 3*2*1
+ *  - nPk -> n(n-1)(n-2)...(n-k+1) | n! -> n(n-1)(n-2).....X3X2X1
+ *  - nCk == nC(n-k) 와 같으며 n! / k!(n-k)! 로도 계산이 가능하다.
+ *
+ */
+public class Pascals {
+
+
+    public static void main(String[] args) {
+
+        System.out.println(pascalsCode(2));
+    }
+
+    public static List<List<Integer>> pascalsCode(int rowNumber) {
+        List<List<Integer>> listResult = new ArrayList<List<Integer>>();
+        int[][] combinationMatrix = new int[rowNumber+1][rowNumber+1];
+
+        /****************************************************
+         * 아래 배열은 무조건 '1'의 값을 리턴
+         * 파스칼 삼각형에서 가장 오른쪽과 가장 왼쪽은 무조건 '1'이다
+         ***************************************************/
+        combinationMatrix[1][0] = 1;
+        combinationMatrix[1][1] = 1;
+
+        if(rowNumber <= 2) {
+            if(rowNumber == 1) {
+                listResult.add(new ArrayList<>(Arrays.asList(1)));
+            }
+
+            if(rowNumber == 2) {
+                listResult.add(new ArrayList<>(Arrays.asList(1)));
+                listResult.add(new ArrayList<>(Arrays.asList(combinationMatrix[1][0], combinationMatrix[1][1])));
+            }
+            return listResult;
+        }
+
+        listResult.add(new ArrayList<>(Arrays.asList(1)));
+        listResult.add(new ArrayList<>(Arrays.asList(combinationMatrix[1][0], combinationMatrix[1][1])));
+        List<Integer> innerList = null;
+        for(int i=2; i<=rowNumber; ++i) {
+            innerList = new ArrayList<>();
+
+            /****************************************************
+             * 아래 배열은 무조건 '1'의 값을 리턴
+             * 파스칼 삼각형에서 가장 오른쪽과 가장 왼쪽은 무조건 '1'이다
+             ***************************************************/
+            combinationMatrix[i][0] = 1;
+            combinationMatrix[i][i] = 1;
+
+            innerList.add(combinationMatrix[i][0]);
+            for (int j=1; j<=i; ++j) {
+                /**
+                 *                1          -> 항상 1
+                 *             1     1       -> 1C0 | 1C1
+                 *           1    2    1     -> 2C0 | 2C1 | 2C2
+                 *         1   3     3   1   -> 3C0 | 3C1 | 3C2 | 3C3
+                 *
+                 * ex)
+                 *  2C1 = 1C0 + 1C1  -> combination[2][1] = combination[1][0] + combination[1][1]
+                 *  3C1 = 2C0 + 2C1  -> combination[3][1] = combination[2][0] + combination[2][1]
+                 *  3C2 = 2C1 + 2C2  -> combination[3][2] = combination[2][1] + combination[2][2]
+                 *  -> 이것을 다시 코드로 짜면
+                 *  combination[i][j] = combination[i-1][j-1] + combination[i-1][j]
+                 *
+                 */
+                combinationMatrix[i][j] = combinationMatrix[i-1][j-1] + combinationMatrix[i-1][j];
+                innerList.add(combinationMatrix[i][j]);
+            }
+            listResult.add(innerList);
+        }
+
+        // Array List 자르는 함수 0 ~ n까지
+        listResult = listResult.subList(0,rowNumber);
+        return listResult;
+    }
+}
