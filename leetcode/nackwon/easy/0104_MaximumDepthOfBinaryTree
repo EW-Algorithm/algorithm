@@ -51,6 +51,5 @@ const maximumDepthOfBinaryTree = function (root) {
 // - 전위순회를 포함한 다른 트리순회는 DFS의 한 종류다.
 // - 그래프 탐색 시 어떤 노드를 방문했는지 체크가 꼭 필요. 안그러면 무한루프에 빠짐
 // DFS 구현
-// - 순환 호출 이용
-// - Stack 이용
-// 추후 공부 후 
+// - 순환 호출 
+// - Stack 
