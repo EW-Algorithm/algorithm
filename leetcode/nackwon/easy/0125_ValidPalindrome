@@ -1,0 +1,50 @@
+package Solution;
+
+import java.util.*;
+
+/**
+ *
+ * Palindrome
+ * 문자열이 회문인지 확인하는 것
+ *
+ * 정규표현식
+ * - 특정한 규칙을 가진 문자열의 집합을 표현하기 위해 쓰이는 형태의 형식언어.
+ * - 개발 시 특정 사항이 존재한다. 전화번호, 이메일, 주민번호 등등
+ */
+public class Palindrome {
+
+    public static void main(String[] args) {
+
+        String str = "A man, a plan, a canal: Panama";
+        String str1 = "0P";
+        String str2 = "a";
+
+        System.out.println(isCheckPalindrome1(str2));
+
+    }
+
+    public static boolean isCheckPalindrome1(String str) {
+
+        str = str.replaceAll("[^a-zA-Z0-9]", "");
+        str = str.toLowerCase();
+        String strReverse = "";
+
+        // 1. StringBuffer 에 Reverse 함수 사용
+        StringBuffer sb = new StringBuffer(str);
+        strReverse = sb.reverse().toString();
+
+        // 2. List 에 담아서 Collections 함수로 Reverse
+        char[] arrStr = str.toCharArray();
+        List<Character>  arrList = new ArrayList<>();
+        for(char ch : arrStr) {
+            arrList.add(ch);
+        }
+        Collections.reverse(arrList);
+        Iterator itr = arrList.iterator();
+        while(itr.hasNext()) {
+            strReverse += String.valueOf(itr.next());
+        }
+
+        return str.equals(strReverse)?true:false;
+    }
+}
