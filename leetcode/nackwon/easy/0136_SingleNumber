@@ -1,0 +1,122 @@
+package JavaSolution;
+
+import java.util.*;
+
+/**
+ * 1) 이중 포문으로 하나씩 돌아가면서 찾는 방법 X
+ * 2) Set으로 문제 해결 방법 X
+ * 3) Map으로 문제 해결 방법 O
+ * 4) XOR 방법으로 해결 O -> 검색해서 찾음.
+ */
+public class SingleNumber {
+
+    public static void main(String[] args) {
+
+        int[] arr = {4,1,2,1,2};
+
+        System.out.println(SNSolution3(arr));
+    }
+    /**
+     * 실패
+     * -> 성공했다고 해도 시간복잡도가 O(n2)이기 때문에 효율이 좋지 않음.
+     * @param nums
+     * @return
+     */
+    public static int SNSolution(int[] nums) {
+        int intResult = 0;
+
+        if(nums.length == 1) {
+            return nums[0];
+        }
+
+        int intSize = nums.length;
+
+        for (int i=0; i<intSize; ++i ) {
+            int intFirstNumber = nums[i];
+
+            for (int j=1;j<intSize; ++j) {
+                int intSecondNumber = nums[j];
+
+                if(intFirstNumber == intSecondNumber) {
+                    break;
+                }
+
+                if(j == intSize-1) {
+                    intResult = intFirstNumber;
+                }
+            }
+        }
+
+        return intResult;
+    }
+
+    /**
+     * Set 을 사용
+     * Set 은 기본적으로 같은 수는 중복은 제거 되기 떄문에 그것을 이용
+     *
+     * -> 잘못됨 이렇게 하면 중복 제건된 값만 들어가고 딱히 문제 해결이 안됨.
+     * -> 그래서 생각한 것이 Map 을 이용해서 Key 값을 비교 있는지 없는지 체크
+     *
+     * getOrDefault(key, DefaultValue) 메소드
+     *  - 찾는 키가 존재한다면 해당 키값을 리턴하고 만약 존재하지 않는다면 DefaultValue 값을 리턴한다.
+     *
+     *  이렇게 할 경우 시간, 공간 복잡도는 각 O(N) 으로 괜찮은 방식이다.
+     * @param nums
+     * @return
+     */
+    public static int SNSolution2(int[] nums) {
+        int intResult = 0;
+
+        if(nums.length == 1) {
+            return nums[0];
+        }
+
+        Map<Integer, Integer> tmpMap = new HashMap<>();
+
+        for (int i : nums) {
+
+            int intTmp = tmpMap.getOrDefault(i, 0);
+
+            if(intTmp == 0) {
+                tmpMap.put(i, 1);
+            } else {
+                tmpMap.remove(i);
+            }
+        }
+
+        Iterator itr = tmpMap.keySet().iterator();
+
+        while (itr.hasNext()) {
+            intResult = (int) itr.next();
+        }
+
+        return intResult;
+    }
+
+    /**
+     * 다른 방법이 있는지 검색해본 결과 XOR 을 사용하면 더 간단하게 문재 해결이 가능.
+     * XOR 은 비트연산이기 때문에 2진수로 계산이 된다.
+     * 같으면 '0' 다르면 '1' 이 리턴되기 때문에
+     * 아래의 문제의 경우 같은 숫자는 결국 0이 되고 다른 숫자만 남게됨 
+     * 그래서 최종적으로 중복이 없는 숫자만 남게됨.
+     * @param nums
+     * @return
+     */
+    public static int SNSolution3 (int[] nums) {
+        int intResult = 0;
+
+        if(nums.length == 1) {
+            return nums[0];
+        }
+
+        int intSize = nums.length;
+
+        for(int i=0;i<intSize; ++i) {
+
+            intResult = intResult ^ nums[i];
+            //intResult ^= nums[i];
+        }
+
+        return intResult;
+    }
+}
