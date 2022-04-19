@@ -1,5 +1,7 @@
 ## Every Week Algorithm
 
+![Generic badge](https://img.shields.io/static/v1?label=study&message=algorithm&color=brightgreen)
+
 <br/>
 
 ##### `해외 사이트`
